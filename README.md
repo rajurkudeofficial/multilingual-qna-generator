@@ -52,19 +52,7 @@ Activate it on Windows:
 pip install -r requirements.txt
 ```
 
-### 4. Add the Qwen model
-
-Place the required model file at:
-
-```text
-models/Qwen3-4B-Q5_K_M.gguf
-```
-
-The Qwen GGUF model is excluded from GitHub because of its large size.
-
-The embedding and translation models are downloaded and cached locally when required.
-
-## Run the Application
+### 4. Run the Application
 
 ### Web Interface
 
@@ -75,8 +63,6 @@ python -m streamlit run app.py
 ```
 
 Open the local URL shown in the terminal.
-
-Upload a PDF, DOCX or TXT document, select the required number of questions, and generate the Excel output.
 
 ### Command Line
 
@@ -91,6 +77,23 @@ The generated Excel file will be saved at:
 ```text
 output/QnA.xlsx
 ```
+
+### 5. Downloading the Qwen model
+
+Once you run the streamlit app,
+The required model automatically started downloading at:
+
+```text
+models/Qwen3-4B-Q5_K_M.gguf
+```
+
+The Qwen GGUF model is excluded from GitHub because of its large size (approx 2.8GB).
+
+The embedding and translation models are downloaded and cached locally when required.
+
+## Input
+
+Upload a PDF, DOCX or TXT document, select the required number of questions, and generate the Excel output.
 
 ## Output
 
