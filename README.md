@@ -31,7 +31,7 @@ The Qwen GGUF model is not included in this repository because of its large file
 
 ```powershell
 git clone https://github.com/rajurkudeofficial/multilingual-qna-generator.git
-cd Q&A-Generator
+cd multilingual-qna-generator
 ```
 
 ### 2. Create a virtual environment
