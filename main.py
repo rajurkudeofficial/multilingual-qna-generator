@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-Multilingual Q&A Generation System
-Main CLI entry point
-"""
-
 import argparse
 import sys
 import logging
@@ -12,7 +6,6 @@ from pathlib import Path
 from src.pipeline import QAGenerationPipeline
 from src.config import Config
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -93,7 +86,6 @@ Examples:
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     
-    # Validate input file
     input_path = Path(args.input)
     if not input_path.exists():
         logger.error(f"Input file not found: {input_path}")
@@ -104,12 +96,10 @@ Examples:
         logger.error(f"Unsupported file format: {input_path.suffix}. Supported: {supported_formats}")
         sys.exit(1)
     
-    # Create output directory
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
     try:
-        # Configure pipeline
         config = Config(
             input_file=str(input_path),
             output_file=str(output_path),
@@ -121,7 +111,6 @@ Examples:
             model_type=args.model_type
         )
         
-        # Run pipeline
         logger.info("Starting Q&A generation pipeline...")
         pipeline = QAGenerationPipeline(config)
         pipeline.run()

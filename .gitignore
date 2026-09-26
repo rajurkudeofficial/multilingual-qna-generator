@@ -1,30 +1,20 @@
-# Python
+# Python generated files
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
 .Python
+
+# Local virtual environment
 .venv/
 env/
 venv/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
-# IDE
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Editor files
 .vscode/
 .idea/
 *.swp
@@ -32,27 +22,24 @@ wheels/
 *~
 .DS_Store
 
-# Models (large files)
+# Large local AI models
 models/*.gguf
 models/*.bin
 models/*.safetensors
 
-# Output and temp
-output/
-*.xlsx
+# Temporary files
 *.tmp
 .ipynb_checkpoints/
 
-# Environment
+# Local environment settings
 .env
 .env.local
-*.log
 
-# Testing
+# Logs and test cache
+*.log
 .pytest_cache/
 .coverage
 htmlcov/
 
-# OS
+# OS generated files
 Thumbs.db
-.DS_Store

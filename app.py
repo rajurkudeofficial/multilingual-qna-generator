@@ -5,21 +5,11 @@ import sys
 import time
 import pandas as pd
 
-
-# =========================================================
-# PAGE CONFIG
-# =========================================================
-
 st.set_page_config(
     page_title="Multilingual Q&A Generator",
     page_icon="🌐",
     layout="wide"
 )
-
-
-# =========================================================
-# CUSTOM CSS
-# =========================================================
 
 st.markdown(
     """
@@ -43,11 +33,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-# =========================================================
-# HEADER
-# =========================================================
-
 st.markdown(
     '<div class="main-title">🌐 Multilingual Q&A Generator</div>',
     unsafe_allow_html=True
@@ -60,11 +45,6 @@ st.markdown(
     '</div>',
     unsafe_allow_html=True
 )
-
-
-# =========================================================
-# SIDEBAR
-# =========================================================
 
 with st.sidebar:
 
@@ -119,22 +99,12 @@ with st.sidebar:
         "💡 CPU mode is recommended for the current setup."
     )
 
-
-# =========================================================
-# FILE UPLOAD
-# =========================================================
-
 st.subheader("📄 Upload Document")
 
 uploaded_file = st.file_uploader(
     "Upload a PDF, DOCX, or TXT file",
     type=["pdf", "docx", "txt"]
 )
-
-
-# =========================================================
-# GENERATE
-# =========================================================
 
 if uploaded_file:
 
@@ -155,11 +125,6 @@ if uploaded_file:
     )
 
     if generate:
-
-        # -------------------------------------------------
-        # Save uploaded file
-        # -------------------------------------------------
-
         input_dir = Path("input")
         input_dir.mkdir(exist_ok=True)
 
@@ -168,18 +133,10 @@ if uploaded_file:
         with open(input_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
 
-        # -------------------------------------------------
-        # Output
-        # -------------------------------------------------
-
         output_dir = Path("output")
         output_dir.mkdir(exist_ok=True)
 
         output_path = output_dir / "QnA.xlsx"
-
-        # -------------------------------------------------
-        # Build command
-        # -------------------------------------------------
 
         command = [
             sys.executable,
@@ -202,10 +159,6 @@ if uploaded_file:
             model_type
         ]
 
-        # -------------------------------------------------
-        # Pipeline Progress
-        # -------------------------------------------------
-
         st.subheader("⚙️ Pipeline Progress")
 
         status = st.status(
@@ -220,11 +173,6 @@ if uploaded_file:
         start_time = time.time()
 
         try:
-
-            # -------------------------------------------------
-            # Run main.py as separate process
-            # -------------------------------------------------
-
             process = subprocess.Popen(
                 command,
                 stdout=subprocess.PIPE,
@@ -233,10 +181,6 @@ if uploaded_file:
                 bufsize=1,
                 universal_newlines=True
             )
-
-            # -------------------------------------------------
-            # Read live logs
-            # -------------------------------------------------
 
             for line in iter(
                 process.stdout.readline,
@@ -275,10 +219,6 @@ if uploaded_file:
                 time.time() - start_time
             )
 
-            # -------------------------------------------------
-            # Failure
-            # -------------------------------------------------
-
             if return_code != 0:
 
                 status.update(
@@ -301,10 +241,6 @@ if uploaded_file:
 
                 st.stop()
 
-            # -------------------------------------------------
-            # Success
-            # -------------------------------------------------
-
             status.update(
                 label=(
                     f"✅ Generation completed "
@@ -318,10 +254,6 @@ if uploaded_file:
                 f"in **{elapsed} seconds**!"
             )
 
-            # -------------------------------------------------
-            # Verify Excel
-            # -------------------------------------------------
-
             if not output_path.exists():
 
                 st.error(
@@ -330,10 +262,6 @@ if uploaded_file:
                 )
 
                 st.stop()
-
-            # -------------------------------------------------
-            # Results
-            # -------------------------------------------------
 
             st.subheader(
                 "📊 Generated Q&A"
@@ -387,10 +315,6 @@ if uploaded_file:
                             f"{sheet} sheet not found."
                         )
 
-            # -------------------------------------------------
-            # Download
-            # -------------------------------------------------
-
             st.subheader(
                 "⬇️ Download Result"
             )
@@ -412,10 +336,6 @@ if uploaded_file:
                 ),
                 use_container_width=True
             )
-
-            # -------------------------------------------------
-            # Logs
-            # -------------------------------------------------
 
             with st.expander(
                 "📋 Pipeline Logs"
@@ -441,11 +361,6 @@ if uploaded_file:
             ):
 
                 st.exception(e)
-
-
-# =========================================================
-# FOOTER
-# =========================================================
 
 st.markdown("---")
 
