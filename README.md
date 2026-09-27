@@ -154,10 +154,6 @@ Q&A-Generator/
 │   ├── translator.py
 │   └── validator.py
 │
-├── tests/
-│   ├── integration_test.py
-│   └── test_components.py
-│
 ├── input/
 ├── models/
 ├── output/
