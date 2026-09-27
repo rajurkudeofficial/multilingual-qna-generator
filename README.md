@@ -219,7 +219,7 @@ environment again:
 ```
 
 Then retry:
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 # Important -
 Do not install Visual Studio Build Tools unless the dependency
