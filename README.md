@@ -189,6 +189,46 @@ Verify that `output/QnA.xlsx` is created and contains:
 - The project is configured for CPU-based inference.
 - Input documents can be placed in the `input` folder.
 - Generated files are saved in the `output` folder.
-- The Qwen GGUF model must be available in the `models` folder before running the pipeline.
+- The Qwen GGUF model must be available in the `models` folder which is downloaded automatically when the pipeline is started.
 - First-time execution may take longer because required models need to be downloaded and cached.
 - CPU inference can take several minutes depending on document size and the number of questions.
+
+## Windows Installation Troubleshooting
+
+In most cases, the provided `requirements.txt` installs
+`llama-cpp-python` using a prebuilt CPU wheel, so Microsoft Visual
+Studio Build Tools should not be required.
+
+However, on some Windows systems, if pip cannot use the compatible
+prebuilt wheel and attempts to build `llama-cpp-python` from source,
+the installation may fail with a C/C++ compiler or Microsoft Visual
+C++ Build Tools error.
+
+### If this error occurs
+
+Install Microsoft Visual Studio Build Tools from the official Microsoft
+website.
+
+During installation, select:
+
+- Desktop development with C++
+- MSVC C++ build tools
+- Windows SDK
+
+After installation, restart the terminal and activate the virtual
+environment again:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+
+Then retry:
+pip install -r requirements.txt
+
+# Important -
+Do not install Visual Studio Build Tools unless the dependency
+installation actually reports a C/C++ compiler or build-tools error.
+
+## Author
+
+**Raj Urkude**  
+B.Tech CSE (AI & ML)
