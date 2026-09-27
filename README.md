@@ -216,6 +216,7 @@ environment again:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
+```
 
 Then retry:
 pip install -r requirements.txt
