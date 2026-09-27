@@ -219,9 +219,11 @@ environment again:
 ```
 
 Then retry:
-```pip install -r requirements.txt```
+```powershell
+pip install -r requirements.txt
+```
 
-# Important -
+Important -
 Do not install Visual Studio Build Tools unless the dependency
 installation actually reports a C/C++ compiler or build-tools error.
 
